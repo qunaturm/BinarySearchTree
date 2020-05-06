@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BinarySearchTree
 {
@@ -33,23 +32,13 @@ namespace BinarySearchTree
         public List<T> Preorder()
         {
             var list = new List<T>();
-            if (Root != null)
+            if (Root == null)
             {
-                var current = Root;
-                list.Add(current.Data);
-               if (current.Left != null)
-               {
-                    list.AddRange(Preorder(current.Left));
-               }
-
-               if (current.Right != null)
-                {
-                    list.AddRange(Preorder(current.Right));
-                }
+                return list;
 
             }
 
-            return list;
+            else return Preorder(Root);
         }
 
         private List<T> Preorder(Node<T> node)
@@ -72,40 +61,31 @@ namespace BinarySearchTree
             else throw new Exception("meeeeee");
         }
 
-        public List<T> Sort()
+        public List<T> PosrOrder()
         {
             var list = new List<T>();
-            if (Root != null)
+            if (Root == null)
             {
-                var current = Root;
-                if (current.Left != null)
-                {
-                    list.AddRange(Sort(current.Left));
-                }
+                return list;
 
-                if (current.Right != null)
-                {
-                    list.AddRange(Sort(current.Right));
-                }
-                list.Add(current.Data);
             }
 
-            return list;
+            else return PosrOrder(Root);
         }
 
-        private List<T> Sort(Node<T> node)
+        private List<T> PosrOrder(Node<T> node)
         {
             if (node != null)
             {
                 var list = new List<T>();
                 if (node.Left != null)
                 {
-                    list.AddRange(Sort(node.Left));
+                    list.AddRange(PosrOrder(node.Left));
                 }
 
                 if (node.Right != null)
                 {
-                    list.AddRange(Sort(node.Right));
+                    list.AddRange(PosrOrder(node.Right));
                 }
 
                 list.Add(node.Data);
@@ -114,29 +94,46 @@ namespace BinarySearchTree
             else throw new Exception("meeee v2");
         }
 
+        public List<T> InOrder()
+        {
+            var list = new List<T>();
+            if (Root == null)
+            {
+                return list;
+
+            }
+
+            else return InOrder(Root);
+        }
+
+        public List<T> InOrder(Node<T> node)
+        {
+            if (node != null)
+            {
+                var list = new List<T>();
+                if (node.Left != null)
+                {
+                    list.AddRange(InOrder(node.Left));
+                }
+
+                list.Add(node.Data);
+
+                if (node.Right != null)
+                {
+                    list.AddRange(InOrder(node.Right));
+                }
+
+                return list;
+            }
+
+            else throw new Exception("meeeeeee v3");
+        }
+
         public IEnumerator GetEnumerator(List<T> list)
         {
             for (int i = 0; i < Count; ++i)
             {
                 yield return list[i];
-            }
-        }
-
-        public void Print(List<T> list) //postfiks dlya printa!!!!!!!!!!!
-        {
-
-            if (Root != null)
-            {
-                for (int i = 0; i < Count; i++)
-                {
-                    Console.WriteLine(list[i]);
-                }
-
-                //foreach (T n in list)
-                //{
-                //    Console.WriteLine(list);
-                //    yield return list[];
-                //}
             }
         }
     }

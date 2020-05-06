@@ -78,5 +78,10 @@ namespace BinarySearchTree
         {
             return Data.CompareTo(other);
         }
+
+        public override string ToString()
+        {
+            return Data.ToString();
+        }
     }
 }
