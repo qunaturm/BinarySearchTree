@@ -23,6 +23,46 @@ namespace BinarySearchTree
             Right = right;
         }
 
+        public void Add(T data)
+        {
+            var node = new Node<T>(data);
+            if (node.Data.CompareTo(Data) <  0)
+            {
+                if (Left == null)
+                {
+                    Left = node;
+                }
+                else
+                {
+                    Left.Add(data);
+                }
+            }
+
+            if(node.Data.CompareTo(Data) == 0)
+            {
+                if (Right == null)
+                {
+                    Right = node;
+                }
+                else
+                {
+                    Right.Add(data);
+                }
+            }
+
+            if (node.Data.CompareTo(Data) > 0)
+            {
+                if (Right == null)
+                {
+                    Right = node;
+                }
+                else
+                {
+                    Right.Add(data);
+                }
+            }
+        }
+
         public int CompareTo(object obj)
         {
             if (obj is Node<T>)
